@@ -1,17 +1,20 @@
-name: Build Resume LateX document
+name: Build Resume LaTeX Document
 on: [push]
 jobs:
-  build_latex:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
       - name: Compile Resume LaTeX document
-        uses: xu-cheng/latex-action@v2
+        uses: Sakul6499/GitHub-Action-LaTeX@v1.0.0
         with:
-          root_file: resume.tex
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v3
+          latex_main_file: resume.tex
+
+      - name: Upload
+        uses: actions/upload-artifact@master
         with:
-          name: PDF
-          path: resume.pdf
+          name: resume.pdf
+          path: ./
+        if: always()
